@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+
+    <form id="registroForm" onsubmit="registrar(event)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" required>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" required>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" required>
+
+        <label>Rol:</label>
+        <input type="radio" id="rolEstudiante" name="rol" value="estudiantes" checked>
+        <label for="rolEstudiante">Estudiante</label>
+
+        <input type="radio" id="rolProfesor" name="rol" value="profesores">
+        <label for="rolProfesor">Profesor</label>
+
+        <div id="camposEstudiante">
+            <label for="codigo">Código Estudiante:</label>
+            <input type="text" id="codigo">
+
+            <label for="programa">Programa:</label>
+            <input type="text" id="programa">
+        </div>
+
+        <div id="camposProfesor" style="display:none;">
+            <label for="profesion">Profesión:</label>
+            <input type="text" id="profesion">
+
+            <label for="experiencia">Años de experiencia:</label>
+            <input type="text" id="experiencia">
+        </div>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <script src="db.js"></script>
+    <script src="registro.js"></script>
+    <script>
+        const rolEstudiante = document.getElementById('rolEstudiante');
+        const rolProfesor = document.getElementById('rolProfesor');
+        const camposEstudiante = document.getElementById('camposEstudiante');
+        const camposProfesor = document.getElementById('camposProfesor');
+
+        rolEstudiante.addEventListener('change', function() {
+            camposEstudiante.style.display = 'block';
+            camposProfesor.style.display = 'none';
+        });
+
+        rolProfesor.addEventListener('change', function() {
+            camposEstudiante.style.display = 'none';
+            camposProfesor.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
